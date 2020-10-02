@@ -1,0 +1,22 @@
+{% extends 'exercises/base.html' %}
+
+{% block tittle_block %} {{page_title}} {% endblock %}
+
+
+{% block body_block %}
+
+
+<div class="container">
+    <form method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Wyślij">
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+
+

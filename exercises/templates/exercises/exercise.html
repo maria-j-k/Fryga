@@ -1,0 +1,55 @@
+{% extends 'exercises/base.html' %}
+
+{% block tittle_block %} Ławka {% endblock %}
+
+
+{% block body_block %}
+
+{% if exercises_list %}
+
+<table class="table">
+    <thead class="thead-dark"> 
+        <tr>
+        <th> l.p. </th>
+        <th> Data  ćwiczenia  </th>
+        <th> Miejsce   </th>
+        <th> Czas trwania w minutach </th>
+        <th> Opis </th>
+        <th> Ocena zachowania psa (-2 - 2) </th>
+        <th> Edytuj </th>
+        <th>typ</th>
+        </tr>
+    </thead>
+{% for exercise in exercises_list %}
+<tr>
+    <td> {{forloop.counter}} </td>
+    <td> {{exercise.day}} </td>
+    <td> {{exercise.place}} /<br>
+            {{exercise.place_description}} </td>
+    <td> {{exercise.duration}} </td>
+    <td> {{exercise.description}} </td>
+    <td> {{exercise.rating}} </td>
+    <td> <a href="{% url 'exercises:'|add:exercise_edit exercise.id  %}">edytuj</a></td>
+    <td> {{ exercise.exercise_type_name }} </td>
+</tr>
+
+{% endfor %}
+</table>
+
+
+
+{% else %}
+<h1> Brak zapisanych ćwiczeń </h1>
+{% endif %}
+
+
+<a class="btn btn-secondary" href="{% url 'exercises:bank_add' %}" role="button"> Dodaj ćwiczenie </a>
+
+
+
+
+{% endblock %}
+
+
+    
+   
